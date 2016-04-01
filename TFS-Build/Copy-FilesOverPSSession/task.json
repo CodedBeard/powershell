@@ -1,0 +1,80 @@
+{
+   "id": "fd7e77a9-0428-4af4-989f-50f314536ac5",
+   "name": "Copy-FilesOverPSSession",
+   "friendlyName": "Copy file Over PSSession",
+   "description": "Copies files to remote server using WMF 5. in order to use this task, your build server must have WMF 5 installed, and have the target machine allowed in the TrustedHosts list",
+   "category": "Deploy",
+   "author": "Stephen Croxford",
+   "version": {
+      "Major": 1,
+      "Minor": 0,
+      "Patch": 1
+   },
+   "minimumAgentVersion": "1.95.0",
+   "inputs": [
+      {
+         "name": "computer",
+         "type": "string",
+         "label": "Remote Computer",
+         "defaultValue": "",
+         "required": true,
+         "helpMarkDown": "The remote machine to copy the files to. This must be a FQDN."
+      },
+      {
+         "name": "port",
+         "type": "string",
+         "label": "WinRM port",
+         "defaultValue": "5986",
+         "required": true,
+         "helpMarkDown": "The WinRM port to connect through."
+      },
+      {
+         "name": "user",
+         "type": "string",
+         "label": "username",
+         "defaultValue": "",
+         "required": true,
+         "helpMarkDown": "The user account to use. Must be full account name with domain"
+      },
+      {
+         "name": "password",
+         "type": "string",
+         "label": "password",
+         "defaultValue": "",
+         "required": true,
+         "helpMarkDown": "The password for the account."
+      },
+      {
+         "name": "path",
+         "type": "string",
+         "label": "Source Path",
+         "defaultValue": "$(System.ArtifactsDirectory)\\$(Build.DefinitionName)\\drop",
+         "required": true,
+         "helpMarkDown": "The path to the files that should be copied."
+      },
+      {
+         "name": "include",
+         "type": "string",
+         "label": "File Types to Include",
+         "defaultValue": "*.dll;*.ps1;*.psm1;*.psd1;*.wsp;*.json;*.xml",
+         "required": true,
+         "helpMarkDown": "A semicolon sepearted list of extesions to use. you must include a wildcard infront of each extenstion. E.G '*.ps1;*.dll'"
+      },
+      {
+         "name": "dropName",
+         "type": "string",
+         "label": "Drop Name",
+         "defaultValue": "$(Build.DefinitionName)",
+         "required": true,
+         "helpMarkDown": "The name of the folder to drop into on the target server."
+      }      
+   ],
+   "instanceNameFormat": "Deploy files to $(computer)",
+   "execution": {
+      "PowerShell": {
+         "target": "$(currentDirectory)\\Copy-FilesOverPSSession.ps1",
+         "argumentFormat": "",
+         "workingDirectory": "$(currentDirectory)"
+      }
+   }
+}
