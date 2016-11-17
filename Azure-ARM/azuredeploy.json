@@ -37,7 +37,7 @@
             }
         },
         "adminUsername": {
-            "defaultValue": "biffsys",
+            "defaultValue": "azure.join",
             "type": "String",
             "metadata": {
                 "description": "The name of the administrator of the new VM and the domain. Exclusion list: 'administrator'. For example johnadmin"
