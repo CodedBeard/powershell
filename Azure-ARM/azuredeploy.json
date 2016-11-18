@@ -100,7 +100,6 @@
         "uniqueStorageAccountContainerName": "[tolower(concat('sac', resourceGroup().name))]",
         "imagePublisher": "MicrosoftWindowsServer",
         "imageOffer": "WindowsServer",
-        "dnsServerPrivateIp": "10.1.32.36",
         "subnet-id": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('vNetResourceGroupName'),'/providers/Microsoft.Network/virtualNetworks/',parameters('adVnetName'),'/subnets/',parameters('adSubnetName'))]",
         "publicIpRef": "publicIp",
         "brokerIpRef": "brokerpublicIp",
@@ -302,12 +301,7 @@
                             ]
                         }
                     }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [
-                        "[variables('dnsServerPrivateIp')]"
-                    ]
-                }
+                ]
             },
             "dependsOn": [
                 "Microsoft.Network/loadBalancers/loadBalancer"
@@ -332,12 +326,7 @@
                             }
                         }
                     }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [
-                        "[variables('dnsServerPrivateIp')]"
-                    ]
-                }
+                ]
             },
             "dependsOn": [
                 "Microsoft.Network/loadBalancers/loadBalancer"
@@ -363,12 +352,7 @@
                             }
                         }
                     }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [
-                        "[variables('dnsServerPrivateIp')]"
-                    ]
-                }
+                ]
             },
             "dependsOn": [
                 "Microsoft.Network/loadBalancers/loadBalancer"
