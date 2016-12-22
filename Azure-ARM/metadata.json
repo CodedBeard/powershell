@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "RDS farm deployment using existing active directory",
+  "description": "This template creates a RDS farm deployment using existing active directory, in a seperate resource group",
+  "summary": "Creates and deploys fully functional RDS farm deployment using existing active directory, in a seperate resource group",
+  "githubUsername": "Codedbeard",
+  "dateUpdated": "2016-11-17"
+}
