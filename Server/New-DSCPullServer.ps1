@@ -23,6 +23,7 @@ Import-DscResource -ModuleName xPSDesiredStateConfiguration
           ConfigurationPath = "$env:PROGRAMFILES\WindowsPowerShell\DscService\Configuration"
           State = 'Started'
           DependsOn = '[WindowsFeature]DSCServiceFeature'
+          UseSecurityBestPractices = $false
         }
 }
 PullServer -OutputPath 'C:\PullServerConfig\'
