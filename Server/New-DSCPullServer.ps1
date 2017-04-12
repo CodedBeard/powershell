@@ -1,7 +1,6 @@
-# https://github.com/PowerShell/Whitepapers/blob/master/PullServerCPIG/PullServerCPIG.md
-# This is a very basic Configuration to deploy a pull server instance in a lab environment on Windows Server 2012.
-
+param([ValidateNotNullOrEmpty()][string]$RootPath = $env:SYSTEMDRIVE)
 Configuration PullServer {
+  param([ValidateNotNullOrEmpty()][string]$RootPath = $env:SYSTEMDRIVE)
 Import-DscResource -ModuleName xPSDesiredStateConfiguration
 
         # Load the Windows Server DSC Service feature
@@ -19,12 +18,12 @@ Import-DscResource -ModuleName xPSDesiredStateConfiguration
           Port = 8080
           PhysicalPath = "$env:SYSTEMDRIVE\inetpub\wwwroot\PSDSCPullServer"
           CertificateThumbPrint = 'AllowUnencryptedTraffic'
-          ModulePath = "$env:PROGRAMFILES\WindowsPowerShell\DscService\Modules"
-          ConfigurationPath = "$env:PROGRAMFILES\WindowsPowerShell\DscService\Configuration"
+          ModulePath = "$RootPath\DSC\WindowsPowerShell\DscService\Modules"
+          ConfigurationPath = "$RootPath\DSC\WindowsPowerShell\DscService\Configuration"
           State = 'Started'
           DependsOn = '[WindowsFeature]DSCServiceFeature'
           UseSecurityBestPractices = $false
         }
 }
-PullServer -OutputPath 'C:\PullServerConfig\'
+PullServer -OutputPath 'C:\PullServerConfig\' -RootPath $RootPath
 Start-DscConfiguration -Wait -Force -Verbose -Path 'C:\PullServerConfig\'
